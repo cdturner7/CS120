@@ -25,10 +25,8 @@ private:
 };
 
 
-
-
 // Derived class
-class Rectangle: public Dinosaur
+class Herbavore: public Dinosaur
 {
 public:
     
