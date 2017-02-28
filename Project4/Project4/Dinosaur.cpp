@@ -26,16 +26,11 @@ public:
 
 };
 
-// Base class PaintCost
-class PaintCost  {
-public:
-    int getCost(int area) {
-        return area * 70;
-    }
-};
 
 // Derived class
-class Rectangle: public Shape, public PaintCost {
+class Herbavore: public Dinosaur
+{
+    Herbavore :()
 public:
     int getArea() {
         return (width * height);

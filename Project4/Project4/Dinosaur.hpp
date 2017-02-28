@@ -13,6 +13,13 @@
 #include <string>
 using namespace std;
 
+//Create a struct
+struct  {
+    double red;
+    double green;
+    double blue;
+};
+
 // Base class Shape
 class Dinosaur {
 public:
