@@ -1,0 +1,38 @@
+****************************
+*                          *
+*   Exam 1 - Study guide   *
+*                          *
+****************************
+
+Topics:
+*******
+
+- Data Types        - Classes           - Output Manipulation
+- File I/O          - Testing           - Operator Overloads
+- Functions
+
+Unary and Binary Operator Overflows:
+************************************
+
+Unary only needs one parameter, because it uses the object itself to compare to.
+binary needs two parameters - one for the &lhs of the operator and one &rhs.
+
+
+
+Streams:
+********
+
+object --> (cout , cin)
+
+File I/O streams: need to make sure that the stream is in a good state so it can be used.
+all have a buffer and reads to or out, and has a state.
+if a stream breaks it will be in a fail state.
+
+
+Random Questions:
+*****************
+
+What's the difference between vectors and arrays?
+-   Arrays dont index out of bounds so they are dangerous,
+    but they are essentially the same exact thing as vectors.
+    DONT USE ARRAYS -> Use Vectors.
