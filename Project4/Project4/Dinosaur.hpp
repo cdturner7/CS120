@@ -24,11 +24,9 @@ private:
     int height;
 };
 
-//Im making changes to see what this does in git!
-
 
 // Derived class
-class Rectangle: public Dinosaur
+class Herbavore: public Dinosaur
 {
 public:
     
