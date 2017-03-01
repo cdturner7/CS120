@@ -48,6 +48,8 @@ void Shape::setFill(double r, double g, double b) {
     fill = {r, g, b};
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+
 Rectangle::Rectangle() : Shape(rectangle), height(0), width(0) {
 }
 

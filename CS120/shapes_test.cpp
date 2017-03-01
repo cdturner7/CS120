@@ -27,6 +27,7 @@ int main() {
      */
     
     Rectangle r;
+    cout << r.getName() << endl;
     r.setWidth(4.4);
     r.setHeight(2);
     cout << r.getArea() << endl;

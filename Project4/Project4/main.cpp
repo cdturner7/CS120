@@ -218,7 +218,7 @@ int main() {
 */
     
     //////////////////////////////////////////////////////////////////////////////////////////////
-    ///TEST struct - 3rd class basically   ( KIT! )   ///
+    ///     TEST struct - 3rd class basically   ( class GOALIE   &&   enum KIT! )              ///
     
     
     //Done with testing

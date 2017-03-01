@@ -7,16 +7,10 @@
 //
 
 #include "Kit.hpp"
-
 #include <iostream>
 #include <sstream>
 
-//Create a enum for what the team wears
-enum kit {Home, Away, Alternative};
-
-
 /////////////Constructors////////////
-
 
 //default contrusctor
 FIFA_player::FIFA_player()
@@ -26,6 +20,7 @@ FIFA_player::FIFA_player()
     name = "Unknown";
     team = "Unknown";
     starter = false;
+    kit = Home;
     overall = calcOverall();
 }
 
@@ -37,6 +32,7 @@ FIFA_player::FIFA_player(string n)
     name = n;
     team = "Unknown";
     starter = false;
+    kit = Home;
     overall = calcOverall();
 }
 
@@ -48,6 +44,7 @@ FIFA_player::FIFA_player(string n, int g)
     name = n;
     team = "Unknown";
     starter = false;
+    kit = Home;
     overall = calcOverall();
 }
 
@@ -59,6 +56,7 @@ FIFA_player::FIFA_player(string n, int g, int a)
     name = n;
     team = "Unknown";
     starter = false;
+    kit = Home;
     overall = calcOverall();
 }
 
@@ -70,6 +68,7 @@ FIFA_player::FIFA_player(string n, int g, int a, string t)
     name = n;
     team = t;
     starter = false;
+    kit = Home;
     overall = calcOverall();
 }
 
@@ -81,6 +80,19 @@ FIFA_player::FIFA_player(string n, int g, int a, string t, bool s)
     name = n;
     team = t;
     starter = s;
+    kit = Home;
+    overall = calcOverall();
+}
+
+//contrusctor with name & goals & assists & team & starting position
+FIFA_player::FIFA_player(string n, int g, int a, string t, bool s, enum kit k)
+{
+    goals = g;
+    assists = a;
+    name = n;
+    team = t;
+    starter = s;
+    kit = k;
     overall = calcOverall();
 }
 
@@ -89,9 +101,7 @@ FIFA_player::~FIFA_player()
 {
 }
 
-
 /////////////Getters////////////////////
-
 
 //get the players goals
 int FIFA_player::getGoals() const
@@ -128,10 +138,13 @@ string FIFA_player::getName() const
 {
     return name;
 }
-
+//set the goalies kit
+kit FIFA_player::getKit() const
+{
+    return kit;
+}
 
 //////////////Setters///////////////////
-
 
 //set the players goals stat
 //and calculate the calcOverall
@@ -168,31 +181,25 @@ void FIFA_player::setName(string in_n)
 {
     name = in_n;
 }
-
+//set the players kit
+void FIFA_player::setKit(enum kit in_k)
+{
+    kit = in_k;
+}
 
 //////////////////////Other Methods/////////////////////
-
 
 //binary operator overloads, prints object instance fields.
 ostream& operator << (ostream& output, const FIFA_player &fifa_player)
 {
-    //if player starts? string yes or no
-    string st;
-    if(fifa_player.starter == 1)
-    {
-        st = "Yes";;
-    }
-    else
-    {
-        st = "No";
-    }
     //Print everything
     output << "Player's Name: " << fifa_player.name
     << "\nTeam: " << fifa_player.team
-    << "\nDoes Player Start? " << st
+    << "\nDoes Player Start? " << boolalpha << fifa_player.starter
     << "\nGoals Scored: " << fifa_player.goals
     << "\nAssists: " << fifa_player.assists
-    << "\nOverall FIFA Rating: " << fifa_player.overall;
+    << "\nOverall FIFA Rating: " << fifa_player.overall
+    << "\nKit: " << fifa_player.kit;
     return output;
 }
 
@@ -285,6 +292,284 @@ int FIFA_player::calcOverall() const
     return rating;
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////
+// 3rd Class construction //
+////////////////////////////
+
+//constructor - default
+FIFA_goalie::FIFA_goalie()
+{
+    goals_against = 0;
+    saves = 0;
+    name = "Unknown";
+    team = "Unknown";
+    starter = false;
+    kit = Home;
+    overall = calcOverall();
+}
+//constructor with player name only
+FIFA_goalie::FIFA_goalie(string n)
+{
+    goals_against = 0;
+    saves = 0;
+    name = n;
+    team = "Unknown";
+    starter = false;
+    kit = Home;
+    overall = calcOverall();
+}
+//constructor with name & goals
+FIFA_goalie::FIFA_goalie(string n, int sv)
+{
+    goals_against = 0;
+    saves = sv;
+    name = n;
+    team = "Unknown";
+    starter = false;
+    kit = Home;
+    overall = calcOverall();
+}
+//constructor with name & goals & assists
+FIFA_goalie::FIFA_goalie(string n, int sv, int ga)
+{
+    goals_against = ga;
+    saves = sv;
+    name = n;
+    team = "Unknown";
+    starter = false;
+    kit = Home;
+    overall = calcOverall();
+}
+//constructor with name & goals & assists & team
+FIFA_goalie::FIFA_goalie(string n, int sv, int ga, string t)
+{
+    goals_against = ga;
+    saves = sv;
+    name = n;
+    team = t;
+    starter = false;
+    kit = Home;
+    overall = calcOverall();
+}
+//constructor with name & goals & assists & team & starting
+FIFA_goalie::FIFA_goalie(string n, int sv, int ga, string t, bool s)
+{
+    goals_against = ga;
+    saves = sv;
+    name = n;
+    team = t;
+    starter = s;
+    kit = Home;
+    overall = calcOverall();
+}
+//constructor all params
+FIFA_goalie::FIFA_goalie(string n, int sv, int ga, string t, bool s, enum kit k)
+{
+    goals_against = ga;
+    saves = sv;
+    name = n;
+    team = t;
+    starter = s;
+    kit = k;
+    overall = calcOverall();
+}
+//deconstructor
+FIFA_goalie::~FIFA_goalie()
+{
+}
+/////////////Getters////////////////////
+
+//get the goalies goals against
+int FIFA_goalie::getGoalsAgainst() const
+{
+    return goals_against;
+}
+
+//get tthe goalies saves
+int FIFA_goalie::getSaves() const
+{
+    return saves;
+}
+
+//get the goalies overall stat
+int FIFA_goalie::getOverall() const
+{
+    return overall;
+}
+
+//get whether the goalie starts or not
+bool FIFA_goalie::getStart() const
+{
+    return starter;
+}
+
+//get the goalies team
+string FIFA_goalie::getTeam() const
+{
+    return team;
+}
+
+//get the goalies name
+string FIFA_goalie::getName() const
+{
+    return name;
+}
+//set the goalies kit
+kit FIFA_goalie::getKit() const
+{
+    return kit;
+}
+
+//////////////Setters///////////////////
+
+//set the players goals stat
+//and calculate the calcOverall
+void FIFA_goalie::setGoalsAgainst(int in_ga)
+{
+    goals_against = in_ga;
+    overall = calcOverall();
+}
+
+//set the players assists stat
+//and calculate the calcOverall
+void FIFA_goalie::setSaves(int in_sv)
+{
+    saves = in_sv;
+    overall = calcOverall();
+}
+
+//set the players starting role - true or false
+//and calculate the calcOverall
+void FIFA_goalie::setStart(bool in_s)
+{
+    starter = in_s;
+    overall = calcOverall();
+}
+
+//set the players team
+void FIFA_goalie::setTeam(string in_t)
+{
+    team = in_t;
+}
+
+//set the players name
+void FIFA_goalie::setName(string in_n)
+{
+    name = in_n;
+}
+//set the goalies kit
+void FIFA_goalie::setKit(enum kit in_k)
+{
+    kit = in_k;
+}
+
+//////////////////////Other Methods/////////////////////
+
+//binary operator overloads, prints object instance fields.
+ostream& operator << (ostream& output, const FIFA_goalie &fifa_goalie)
+{
+    //Print everything
+    output << "Player's Name: " << fifa_goalie.name
+    << "\nTeam: " << fifa_goalie.team
+    << "\nDoes Player Start? " << boolalpha << fifa_goalie.starter
+    << "\nGoals Scored Against: " << fifa_goalie.goals_against
+    << "\nSaves: " << fifa_goalie.saves
+    << "\nOverall FIFA Rating: " << fifa_goalie.overall
+    << "\nKit: " << fifa_goalie.kit;
+    return output;
+}
+
+//calculate the overall rating of player
+int FIFA_goalie::calcOverall() const
+{
+    //no matter what player rating isnt below a 65.
+    int rating = 65;
+    
+    //if the player starts then they get 10 points on their rating
+    if (starter)
+    {
+        rating += 10;
+    }
+    
+    //Saves:
+    
+    //Player has between 0-5 goals
+    if (getSaves() > 0 && getSaves() <= 5)
+    {
+        rating += 2;
+    }
+    //Player has between 6-10 goals
+    else if(getSaves() > 5 && getSaves() <= 10)
+    {
+        rating += 3;
+    }
+    //Player has between 11-15 goals
+    else if(getSaves() > 10 && getSaves() <= 15)
+    {
+        rating += 4;
+    }
+    //Player has between 16-20 goals
+    else if(getSaves() > 15 && getSaves() <= 20)
+    {
+        rating += 5;
+    }
+    //Player has more than 20 goals
+    else if(getSaves() > 20)
+    {
+        rating += 6;
+    }
+    //Player scored negative goals
+    else
+    {
+        rating += 0;
+    }
+    
+    //Goals Against:
+    
+    //Player has between 0-5 assists
+    if (getGoalsAgainst() > 0 && getGoalsAgainst() <= 5)
+    {
+        rating += 14;
+    }
+    //Player has between 6-10 assists
+    else if(getGoalsAgainst() > 5 && getGoalsAgainst() <= 10)
+    {
+        rating += 11;
+    }
+    //Player has between 11-15 assists
+    else if(getGoalsAgainst() > 10 && getGoalsAgainst() <= 15)
+    {
+        rating += 9;
+    }
+    //Player has between 16-20 assists
+    else if(getGoalsAgainst() > 15 && getGoalsAgainst() <= 20)
+    {
+        rating += 7;
+    }
+    //Player has more than 20 assists
+    else if(getGoalsAgainst() > 20)
+    {
+        rating += 5;
+    }
+    //Player has negative assists
+    else
+    {
+        rating += 0;
+    }
+    
+    //return rating to get the players overall stat
+    return rating;
+}
+
+
+
+
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////
@@ -294,19 +579,18 @@ int FIFA_player::calcOverall() const
 //default contrusctor
 FIFA_team::FIFA_team()
 {
-    
     team_name = "Unknown";
     wins = 0;
     losses = 0;
     draws = 0;
     standing = 20;
-    
     //Put 5 random players on the team
     for (int i = 0; i < 5; i++)
     {
         players.push_back(FIFA_player());
     }
-    
+    goalie = FIFA_goalie();
+    players.push_back(goalie);
     //call the methods to set the other fields
     //based upon player vector (objects of subclass)
     setTeamGoals();
@@ -322,13 +606,14 @@ FIFA_team::FIFA_team(vector<FIFA_player> team)
     draws = 0;
     standing = 20;
     players = team;
-    
+    goalie = FIFA_goalie();
+    players.push_back(goalie);
     //call the methods to set the other fields
     setTeamGoals();
     setTeamAssists();
 }
 //constructor passing everything!
-FIFA_team::FIFA_team(vector<FIFA_player> team, int w, int l, int d, int s, string name)
+FIFA_team::FIFA_team(vector<FIFA_player> team, int w, int l, int d, int s, string name, FIFA_goalie goal)
 {
     team_name = name;
     wins = w;
@@ -336,12 +621,16 @@ FIFA_team::FIFA_team(vector<FIFA_player> team, int w, int l, int d, int s, strin
     draws = d;
     standing = s;
     players = team;
-    
+    goalie = goal;
+    players.push_back(goalie);
     //call the methods to set the other fields
     setTeamGoals();
     setTeamAssists();
 }
-
+//deconstructor
+FIFA_team::~FIFA_team()
+{
+}
 /////////////////////////
 //Getters for the teams//
 /////////////////////////
@@ -398,6 +687,11 @@ vector<string> FIFA_team::getPlayerNames() const
 vector<FIFA_player> FIFA_team::getTeam() const
 {
     return players;
+}
+//returns the goalie object
+FIFA_goalie FIFA_team::getGoalie() const
+{
+    return goalie;
 }
 
 /////////////////////////
@@ -507,7 +801,10 @@ vector<FIFA_player> FIFA_team::setPlayerAssists(vector<FIFA_player> &players_in,
     setTeamAssists();  //update teamAssists
     return players;
 }
-
+void FIFA_team::setGoalie(FIFA_goalie g)
+{
+    goalie = g;
+}
 ///////////////////////////////////////
 
 ///         OTHER  METHODS          ///
@@ -562,8 +859,6 @@ ostream& operator << (ostream& outs, const FIFA_team &ft)
     }
     return outs;
 }
-
-
 
 
 
