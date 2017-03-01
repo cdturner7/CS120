@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F0EEBE011E660FE400349844 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0EEBE001E660FE400349844 /* main.cpp */; };
-		F0EEBE091E66100500349844 /* Dinosaur.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0EEBE071E66100500349844 /* Dinosaur.cpp */; };
+		F0EEBE0C1E66482A00349844 /* Kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0EEBE0A1E66482A00349844 /* Kit.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,8 +26,8 @@
 /* Begin PBXFileReference section */
 		F0EEBDFD1E660FE400349844 /* Project4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Project4; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0EEBE001E660FE400349844 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		F0EEBE071E66100500349844 /* Dinosaur.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dinosaur.cpp; sourceTree = "<group>"; };
-		F0EEBE081E66100500349844 /* Dinosaur.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Dinosaur.hpp; sourceTree = "<group>"; };
+		F0EEBE0A1E66482A00349844 /* Kit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Kit.cpp; sourceTree = "<group>"; };
+		F0EEBE0B1E66482A00349844 /* Kit.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Kit.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				F0EEBE001E660FE400349844 /* main.cpp */,
-				F0EEBE071E66100500349844 /* Dinosaur.cpp */,
-				F0EEBE081E66100500349844 /* Dinosaur.hpp */,
+				F0EEBE0A1E66482A00349844 /* Kit.cpp */,
+				F0EEBE0B1E66482A00349844 /* Kit.hpp */,
 			);
 			path = Project4;
 			sourceTree = "<group>";
@@ -124,7 +124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0EEBE091E66100500349844 /* Dinosaur.cpp in Sources */,
+				F0EEBE0C1E66482A00349844 /* Kit.cpp in Sources */,
 				F0EEBE011E660FE400349844 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
