@@ -32,3 +32,4 @@
 *.xcodeproj
 *.DS_Store
 *.xcuserstate
+*.xcodeproj*
