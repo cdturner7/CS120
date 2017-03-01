@@ -9,6 +9,8 @@
 #ifndef shapes_hpp
 #define shapes_hpp
 
+enum shapeName {circle, rectangle, square, triangle, parallelogram, rhombus, trapezoid, quadrilateral, polygon};
+
 struct color {
     double red;
     double green;
@@ -18,18 +20,25 @@ struct color {
 class Shape {
 public:
     Shape();
-    Shape(double a, double p, color f);
     Shape(color f);
+    Shape(double r, double g, double b);
+    Shape(shapeName sn);
+    Shape(shapeName sn, color f);
+    Shape(shapeName sn, double r, double g, double b);
     
-    double get_area() const;
-    double get_perimeter() const;
-    color get_fill() const;
+    virtual double getArea() const;
+    virtual double getPerimeter() const;
+    virtual color getFill() const;
+    virtual shapeName getName() const;
     
-    void set_color(color c);
-    void set_color(double r, double g, double b);
+    virtual void setFill(color f);
+    virtual void setFill(double r, double g, double b);
 protected:
+    virtual void calcAreaPeri(double &a, double &p) = 0;
+    
     double area;
     double perimeter;
+    shapeName name;
 private:
     color fill;
 };
@@ -37,22 +46,31 @@ private:
 class Rectangle : public Shape {
 public:
     Rectangle();
-    Rectangle(double l, double w);
-    Rectangle(double l, double w, color c);
-    Rectangle(color c);
     
-    double get_length() const;
-    double get_width() const;
-    
-    void set_length(double l);
-    void set_width(double w);
+    // setters will modify area and perimeter also
+    virtual void setHeight(double h);
+    virtual void setWidth(double w);
 private:
-    // Modifies: area and perimeter
-    // Will access length and width directly
-    void calc_area_peri();
+    // helper method to calculate area and perimeter
+    virtual void calcAreaPeri(double &a, double &p) override;
     
-    double length;
+    double height;
     double width;
+};
+
+class Circle : public Shape {
+public:
+    Circle();
+    
+    virtual double getRadius() const;
+    
+    // setters will modify area and perimeter also
+    virtual void setRadius(double r);
+private:
+    // helper method to calculate area and perimeter
+    virtual void calcAreaPeri(double &a, double &p) override;
+    
+    double radius;
 };
 
 

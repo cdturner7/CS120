@@ -7,33 +7,29 @@
 //
 
 #include "shapes.hpp"
+
 #include <iostream>
 using namespace std;
 
 int main() {
     
-    color blue = {0, 0, 1};
-    cout << blue.red << endl;
+    color aqua = {0, 0, 1};
+    cout << aqua.red << endl;
     
-    color green;
-    green.red = green.blue = 0;
-    green.green = 1;
+    color grass;
+    grass.red = grass.blue = 0;
+    grass.green = 1;
     
-    Shape parallelogram(4, 8, green);
-    cout << parallelogram.get_area() << endl;
-    cout << parallelogram.get_perimeter() << endl;
-    color par = parallelogram.get_fill();
-    cout << "(" << par.red << ", " << par.green << ", " << par.blue << ")" << endl;
-    parallelogram.set_color(blue);
-    par = parallelogram.get_fill();
-    cout << "(" << par.red << ", " << par.green << ", " << par.blue << ")" << endl;
-    parallelogram.set_color(1, 0, 0);
-    par = parallelogram.get_fill();
-    cout << "(" << par.red << ", " << par.green << ", " << par.blue << ")" << endl;
-    Rectangle r(5, 2.5, color{1, 0, 0});
-    r.set_width(7);
-    cout << r.get_area() << endl;
+    /*
+     Shape r(rhombus);
+     r.setFill(aqua);
+     cout << r.getName() << endl;
+     */
     
+    Rectangle r;
+    r.setWidth(4.4);
+    r.setHeight(2);
+    cout << r.getArea() << endl;
     
     return 0;
 }

@@ -11,6 +11,10 @@
 #include <iostream>
 #include <sstream>
 
+//Create a enum for what the team wears
+enum kit {Home, Away, Alternative};
+
+
 /////////////Constructors////////////
 
 
