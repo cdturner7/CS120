@@ -30,4 +30,5 @@
 
 # Custom
 *.xcodeproj
-*.Ds_store
+*.DS_Store
+*.xcuserstate
