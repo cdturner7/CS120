@@ -30,7 +30,6 @@ int main() {
     parallelogram.set_color(1, 0, 0);
     par = parallelogram.get_fill();
     cout << "(" << par.red << ", " << par.green << ", " << par.blue << ")" << endl;
-    
     Rectangle r(5, 2.5, color{1, 0, 0});
     r.set_width(7);
     cout << r.get_area() << endl;
