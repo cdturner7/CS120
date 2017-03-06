@@ -1,9 +1,9 @@
 //
 //  shapes_test.cpp
-//  CS120
+//  CS 120 B
 //
-//  Created by Collin on 2/27/17.
-//  Copyright © 2017 Collin. All rights reserved.
+//  Created by Lisa Dion on 2/23/17.
+//  Copyright © 2017 Lisa Dion. All rights reserved.
 //
 
 #include "shapes.hpp"
@@ -27,7 +27,6 @@ int main() {
      */
     
     Rectangle r;
-    cout << r.getName() << endl;
     r.setWidth(4.4);
     r.setHeight(2);
     cout << r.getArea() << endl;

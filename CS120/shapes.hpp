@@ -1,9 +1,9 @@
 //
 //  shapes.hpp
-//  CS120
+//  CS 120 B
 //
-//  Created by Collin on 2/27/17.
-//  Copyright © 2017 Collin. All rights reserved.
+//  Created by Lisa Dion on 2/23/17.
+//  Copyright © 2017 Lisa Dion. All rights reserved.
 //
 
 #ifndef shapes_hpp

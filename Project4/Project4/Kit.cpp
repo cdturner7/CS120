@@ -10,6 +10,10 @@
 #include <iostream>
 #include <sstream>
 
+///////////////////////////////
+// PLAYER Class construction //
+///////////////////////////////
+
 /////////////Constructors////////////
 
 //default contrusctor
@@ -22,70 +26,10 @@ FIFA_player::FIFA_player()
     starter = false;
     kit = Home;
     overall = calcOverall();
+    cleats = {"", "", FG};
 }
-
-//contrusctor with name
-FIFA_player::FIFA_player(string n)
-{
-    goals = 0;
-    assists = 0;
-    name = n;
-    team = "Unknown";
-    starter = false;
-    kit = Home;
-    overall = calcOverall();
-}
-
-//contrusctor with name & goals
-FIFA_player::FIFA_player(string n, int g)
-{
-    goals = g;
-    assists = 0;
-    name = n;
-    team = "Unknown";
-    starter = false;
-    kit = Home;
-    overall = calcOverall();
-}
-
-//contrusctor with name & goals & assists
-FIFA_player::FIFA_player(string n, int g, int a)
-{
-    goals = g;
-    assists = a;
-    name = n;
-    team = "Unknown";
-    starter = false;
-    kit = Home;
-    overall = calcOverall();
-}
-
-//contrusctor with name & goals & assists & team
-FIFA_player::FIFA_player(string n, int g, int a, string t)
-{
-    goals = g;
-    assists = a;
-    name = n;
-    team = t;
-    starter = false;
-    kit = Home;
-    overall = calcOverall();
-}
-
-//contrusctor with name & goals & assists & team & starting position
-FIFA_player::FIFA_player(string n, int g, int a, string t, bool s)
-{
-    goals = g;
-    assists = a;
-    name = n;
-    team = t;
-    starter = s;
-    kit = Home;
-    overall = calcOverall();
-}
-
-//contrusctor with name & goals & assists & team & starting position
-FIFA_player::FIFA_player(string n, int g, int a, string t, bool s, enum kit k)
+//Constructor with all params
+FIFA_player::FIFA_player(string n, int g, int a, string t, bool s, enum kit k, struct cleats c)
 {
     goals = g;
     assists = a;
@@ -94,8 +38,8 @@ FIFA_player::FIFA_player(string n, int g, int a, string t, bool s, enum kit k)
     starter = s;
     kit = k;
     overall = calcOverall();
+    cleats = c;
 }
-
 //deconstructor
 FIFA_player::~FIFA_player()
 {
@@ -138,12 +82,17 @@ string FIFA_player::getName() const
 {
     return name;
 }
-//set the goalies kit
+/*//set the goalies kit
 kit FIFA_player::getKit() const
 {
     return kit;
 }
-
+//set the goalies kit
+cleats FIFA_player::getCleats() const
+{
+    return cleats;
+}
+*/
 //////////////Setters///////////////////
 
 //set the players goals stat
@@ -181,11 +130,16 @@ void FIFA_player::setName(string in_n)
 {
     name = in_n;
 }
-//set the players kit
+/*//set the players kit
 void FIFA_player::setKit(enum kit in_k)
 {
     kit = in_k;
 }
+//set the players cleats
+void FIFA_player::setCleats(struct cleats in_c)
+{
+    cleats = in_c;
+}*/
 
 //////////////////////Other Methods/////////////////////
 
@@ -200,6 +154,7 @@ ostream& operator << (ostream& output, const FIFA_player &fifa_player)
     << "\nAssists: " << fifa_player.assists
     << "\nOverall FIFA Rating: " << fifa_player.overall
     << "\nKit: " << fifa_player.kit;
+    // << "\nCleats: " << &fifa_player.cleats;
     return output;
 }
 
@@ -254,7 +209,6 @@ int FIFA_player::calcOverall() const
         rating += 0;
     }
     
-    
     //Assists:
     
     //Player has between 0-5 assists
@@ -295,92 +249,26 @@ int FIFA_player::calcOverall() const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////
-// 3rd Class construction //
-////////////////////////////
+///////////////////////////////
+// GOALIE Class construction //
+///////////////////////////////
 
 //constructor - default
-FIFA_goalie::FIFA_goalie()
+FIFA_goalie::FIFA_goalie() : FIFA_player()
 {
     goals_against = 0;
     saves = 0;
-    name = "Unknown";
-    team = "Unknown";
-    starter = false;
-    kit = Home;
     overall = calcOverall();
 }
-//constructor with player name only
-FIFA_goalie::FIFA_goalie(string n)
+//Constructor with all params
+FIFA_goalie::FIFA_goalie(string n, int g, int a, string t, bool s, enum kit k, struct cleats c) : FIFA_player(n, 0, 0, t, s, k, c)
 {
-    goals_against = 0;
-    saves = 0;
-    name = n;
-    team = "Unknown";
-    starter = false;
-    kit = Home;
+    goals_against = a;
+    saves = g;
     overall = calcOverall();
 }
-//constructor with name & goals
-FIFA_goalie::FIFA_goalie(string n, int sv)
-{
-    goals_against = 0;
-    saves = sv;
-    name = n;
-    team = "Unknown";
-    starter = false;
-    kit = Home;
-    overall = calcOverall();
-}
-//constructor with name & goals & assists
-FIFA_goalie::FIFA_goalie(string n, int sv, int ga)
-{
-    goals_against = ga;
-    saves = sv;
-    name = n;
-    team = "Unknown";
-    starter = false;
-    kit = Home;
-    overall = calcOverall();
-}
-//constructor with name & goals & assists & team
-FIFA_goalie::FIFA_goalie(string n, int sv, int ga, string t)
-{
-    goals_against = ga;
-    saves = sv;
-    name = n;
-    team = t;
-    starter = false;
-    kit = Home;
-    overall = calcOverall();
-}
-//constructor with name & goals & assists & team & starting
-FIFA_goalie::FIFA_goalie(string n, int sv, int ga, string t, bool s)
-{
-    goals_against = ga;
-    saves = sv;
-    name = n;
-    team = t;
-    starter = s;
-    kit = Home;
-    overall = calcOverall();
-}
-//constructor all params
-FIFA_goalie::FIFA_goalie(string n, int sv, int ga, string t, bool s, enum kit k)
-{
-    goals_against = ga;
-    saves = sv;
-    name = n;
-    team = t;
-    starter = s;
-    kit = k;
-    overall = calcOverall();
-}
-//deconstructor
-FIFA_goalie::~FIFA_goalie()
-{
-}
-/////////////Getters////////////////////
+
+/////////////Additional Getters////////////////////
 
 //get the goalies goals against
 int FIFA_goalie::getGoalsAgainst() const
@@ -388,42 +276,13 @@ int FIFA_goalie::getGoalsAgainst() const
     return goals_against;
 }
 
-//get tthe goalies saves
+//get the goalies saves
 int FIFA_goalie::getSaves() const
 {
     return saves;
 }
 
-//get the goalies overall stat
-int FIFA_goalie::getOverall() const
-{
-    return overall;
-}
-
-//get whether the goalie starts or not
-bool FIFA_goalie::getStart() const
-{
-    return starter;
-}
-
-//get the goalies team
-string FIFA_goalie::getTeam() const
-{
-    return team;
-}
-
-//get the goalies name
-string FIFA_goalie::getName() const
-{
-    return name;
-}
-//set the goalies kit
-kit FIFA_goalie::getKit() const
-{
-    return kit;
-}
-
-//////////////Setters///////////////////
+//////////////Additional Setters///////////////////
 
 //set the players goals stat
 //and calculate the calcOverall
@@ -435,40 +294,15 @@ void FIFA_goalie::setGoalsAgainst(int in_ga)
 
 //set the players assists stat
 //and calculate the calcOverall
-void FIFA_goalie::setSaves(int in_sv)
+void FIFA_goalie::setSaves(int in_s)
 {
-    saves = in_sv;
+    saves = in_s;
     overall = calcOverall();
-}
-
-//set the players starting role - true or false
-//and calculate the calcOverall
-void FIFA_goalie::setStart(bool in_s)
-{
-    starter = in_s;
-    overall = calcOverall();
-}
-
-//set the players team
-void FIFA_goalie::setTeam(string in_t)
-{
-    team = in_t;
-}
-
-//set the players name
-void FIFA_goalie::setName(string in_n)
-{
-    name = in_n;
-}
-//set the goalies kit
-void FIFA_goalie::setKit(enum kit in_k)
-{
-    kit = in_k;
 }
 
 //////////////////////Other Methods/////////////////////
 
-//binary operator overloads, prints object instance fields.
+/*//binary operator overloads, prints object instance fields.
 ostream& operator << (ostream& output, const FIFA_goalie &fifa_goalie)
 {
     //Print everything
@@ -478,9 +312,10 @@ ostream& operator << (ostream& output, const FIFA_goalie &fifa_goalie)
     << "\nGoals Scored Against: " << fifa_goalie.goals_against
     << "\nSaves: " << fifa_goalie.saves
     << "\nOverall FIFA Rating: " << fifa_goalie.overall
-    << "\nKit: " << fifa_goalie.kit;
+    << "\nKit: " << fifa_goalie.kit
+    << "\nCleats: " << &fifa_goalie.cleats;
     return output;
-}
+}*/
 
 //calculate the overall rating of player
 int FIFA_goalie::calcOverall() const
@@ -559,22 +394,15 @@ int FIFA_goalie::calcOverall() const
     {
         rating += 0;
     }
-    
     //return rating to get the players overall stat
     return rating;
 }
 
-
-
-
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////
-// 2nd Class construction //
-////////////////////////////
+/////////////////////////////
+// TEAM Class construction //
+/////////////////////////////
 
 //default contrusctor
 FIFA_team::FIFA_team()
@@ -805,11 +633,8 @@ void FIFA_team::setGoalie(FIFA_goalie g)
 {
     goalie = g;
 }
-///////////////////////////////////////
 
 ///         OTHER  METHODS          ///
-
-///////////////////////////////////////
 
 //adds a player to the end of the team roster (vector)
 void FIFA_team::addPlayer(FIFA_player player)
@@ -849,8 +674,8 @@ ostream& operator << (ostream& outs, const FIFA_team &ft)
     outs << "Team's Name: " << ft.team_name
     << "\nRecord: " << ft.wins << "-" << ft.draws << "-" << ft.losses
     << "\nOverall Standing: " << ft.standing
-    // << "\nTeam's Total Goals: " << ft.team_goals
-    // << "\nTeam's Total Assists: " << ft.team_assists
+    << "\nTeam's Total Goals: " << ft.team_goals
+    << "\nTeam's Total Assists: " << ft.team_assists
     << "\nPlayers -- \n";
     
     for (int i = 0; i < ft.players.size(); i++)

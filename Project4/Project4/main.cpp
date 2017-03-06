@@ -9,18 +9,23 @@
  
  MY PROGRAM -
  
- For Project 4, I implemented a kit struct for the parent FIFA_team class. This is implemented in the parent class because all of the child object instances should be wearing the same kit at the same time. So like the color struct described in class - the kit struct will describe which kit the team is wearing at any given time and can be set at any given time. The options for their kit are Home, Away, or Alternative kits. The kit is simply the jersey, shorts and combo that the team is wearing for the game.
+ For Project 4, I implemented a new child class to 
+ the FIFA_player class which is a FIFA_goalie - where 
+ the FIFA_goalie 'is a' FIFA_player and the
+ 
  */
 
 #include <iostream>
 #include "Kit.cpp"
+#include "FIFA.cpp"
 
 using namespace std;
 
-int main() {
+int main()
+{
 /*
      //Testing from the first class
-     
+    
      //Testing all constructors:
      //default
      cout << "Constructor Testing" << endl;
@@ -43,7 +48,7 @@ int main() {
      FIFA_player ct4 = FIFA_player("Collin Turner", 12, 8, "Liverpool FC");
      cout << ct4 << endl;
      cout << endl;
-     //name and goals and assists and team name and whether player starts on the field (all fields)
+     //name and goals and assists and team name and whether player starts on the field
      FIFA_player ct5 = FIFA_player("Collin Turner", 12, 8, "Liverpool FC", false);
      cout << ct5 << endl;
      cout << endl;
@@ -112,11 +117,11 @@ int main() {
      {
      cout << "\nRonaldo is better than Messi, but that's just not possible..." << endl;
      }
-*/
+
     
     //////////////////////////////////////////////////////////////////////////////////////////////
     ///TEST 2nd CLASS///
-/*
+
     cout << "\nTesting the Second class: \n" << endl;
     
     //Test the default constructor
@@ -135,8 +140,12 @@ int main() {
     FIFA_team livpool = FIFA_team(livpl);
     cout << livpool << endl;
     
+    
+    //create a goalie - random
+    FIFA_goalie mignolet = FIFA_goalie();
+    
     //test the constructor that takes in all params
-    FIFA_team liverpool = FIFA_team(livpl, 14, 7, 4, 5, "Liverpool");
+    FIFA_team liverpool = FIFA_team(livpl, 14, 7, 4, 5, "Liverpool", mignolet);
     cout << liverpool << endl;
     
     //test the add player function and create player to add
@@ -214,11 +223,12 @@ int main() {
     cout << "\n" << theTeam[4] << endl;                                                 //print player instance after changes
     cout << "\nTeams total goals (up by 30): " << liverpool.getTeamGoals() << endl;     //print team goals after changes
     cout << "Teams total assists (up by 20): " << liverpool.getTeamAssists() << endl;   //print team assits after changes
-    
+
 */
     
     //////////////////////////////////////////////////////////////////////////////////////////////
     ///     TEST struct - 3rd class basically   ( class GOALIE   &&   enum KIT! )              ///
+    
     
     
     //Done with testing

@@ -16,10 +16,13 @@ using namespace std;
 
 //Create a enum for what the team wears
 enum kit {Home, Away, Alternative};
+enum type {IF, FG, SG, AG, AT};
 
 //Create a struct for the _______ class:
-struct really {
-    //really
+struct cleats {
+    string brand;
+    string model;
+    type type;
 };
 
 //Class for a single player in FIFA
@@ -28,18 +31,8 @@ public:
     
     //default constructor
     FIFA_player();
-    //constructor with player name only
-    FIFA_player(string n);
-    //constructor with name & goals
-    FIFA_player(string n, int g);
-    //constructor with name & goals & assists
-    FIFA_player(string n, int g, int a);
-    //constructor with name & goals & assists & team
-    FIFA_player(string n, int g, int a, string t);
-    //constructor with name & goals & assists & team & starting position
-    FIFA_player(string n, int g, int a, string t, bool s);
     //constructor with all params
-    FIFA_player(string n, int g, int a, string t, bool s, enum kit kit);
+    FIFA_player(string n, int g, int a, string t, bool s, enum kit k, cleats c);
     //destructor//
     ~FIFA_player();
     
@@ -59,7 +52,8 @@ public:
     virtual bool getStart() const;
     virtual string getTeam() const;
     virtual string getName() const;
-    virtual enum kit getKit() const;
+    //virtual enum kit getKit() const;
+    //virtual struct cleats getCleats() const;
     
     //Setters
     virtual void setGoals(int in_g);
@@ -67,21 +61,17 @@ public:
     virtual void setStart(bool in_s);
     virtual void setTeam(string in_t);
     virtual void setName(string in_n);
-    virtual void setKit(kit in_k);
+    //virtual void setKit(kit in_k);
+    //virtual void setCleats(cleats in_c);
     
     // binary operator overloads
     friend ostream& operator << (ostream& output, const FIFA_player &fifa_player);
     
     friend bool operator > (const FIFA_player &lhs, const FIFA_player &rhs);
     
-private:
+protected:
 
-    /**
-     * Requires: nothing
-     * Modifies: nothing
-     * Effects:  calculates the overall rating for player
-     */
-    virtual int calcOverall() const;
+    
     
     //Fields
     int goals;      //the players goals scored
@@ -91,6 +81,15 @@ private:
     string team;    //the player's club
     string name;    //the player's name
     kit kit;        //kit or jersey of the players
+    cleats cleats;   //The cleats the player is wearing
+
+private:
+    /**
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects:  calculates the overall rating for player
+     */
+    virtual int calcOverall() const;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,66 +102,41 @@ class FIFA_goalie : public FIFA_player
 public:
     //constructors
     FIFA_goalie();
-    //constructor with player name only
-    FIFA_goalie(string n);
-    //constructor with name & goals
-    FIFA_goalie(string n, int sv);
-    //constructor with name & goals & assists
-    FIFA_goalie(string n, int sv, int ga);
-    //constructor with name & goals & assists & team
-    FIFA_goalie(string n, int sv, int ga, string t);
-    //constructor with name & goals & assists & team & starting position
-    FIFA_goalie(string n, int sv, int ga, string t, bool s);
-    //constructor all params
-    FIFA_goalie(string n, int sv, int ga, string t, bool s, enum kit k);
-    //destructor
-    ~FIFA_goalie();
+    //All params
+    FIFA_goalie(string n, int g, int a, string t, bool s, enum kit k, struct cleats c);
     
     /**
      * Requires: nothing or input from user for setting field
-     * Modifies: goals, assists, team name, player name,
-     *           overall rating, starting
-     * Effects:  gets or sets values for goals, assists,
-     *           team name, player name, overall rating,
-     *           starting
+     * Modifies: goals_against, saves, and overrides to calc 
+     *           overall
+     * Effects:  gets or sets values for goals_against, saves, 
+     *           and overall
      */
     //Getters
-    int getGoalsAgainst() const;
-    int getSaves() const;
-    virtual int getOverall() const;
-    virtual bool getStart() const;
-    virtual string getTeam() const;
-    virtual string getName() const;
-    virtual enum kit getKit() const;
-    
+    virtual int getGoalsAgainst() const;
+    virtual int getSaves() const;
+
     //Setters
-    void setGoalsAgainst(int in_ga);
-    void setSaves(int in_sv);
-    virtual void setStart(bool in_s);
-    virtual void setTeam(string in_t);
-    virtual void setName(string in_n);
-    virtual void setKit(enum kit in_k);
+    virtual void setGoalsAgainst(int in_ga);
+    virtual void setSaves(int in_s);
     
     // binary operator overloads
-    friend ostream& operator << (ostream& output, const FIFA_goalie &fifa_goalie);
+    //friend ostream& operator << (ostream& output, const FIFA_goalie &fifa_goalie);
     
 private:
     
     /**
      * Requires: nothing
      * Modifies: nothing
-     * Effects:  calculates the overall rating for goalie from stats
+     * Effects:  calculates the overall rating for 
+     *           goalie from stats the goalie has
      */
-    virtual int calcOverall() const;
-    
+    virtual int calcOverall() const override;
+
+protected: 
     //Fields
     int saves;          //Goalies number of saves
     int goals_against;  //Goalies number of saves
-    int overall;        //the goalies overall stat - calculated based on stats
-    bool starter;       //Does the player start or are they a sub?
-    string team;        //the player's club
-    string name;        //the player's name
-    enum kit kit;       //the jersey and short combo of the goalie
 };
 
 
@@ -170,7 +144,9 @@ private:
 
 
 //Class for a team of FIFA players -> FIFA_Team
-class FIFA_team {
+class FIFA_team
+{
+
 public:
     
     //Constructors
@@ -223,7 +199,6 @@ private:
     int wins;                   //Team Wins
     int losses;                 //Team Losses
     int draws;                  //Team Draws
-    string record;              //Team's Record in a string
     int standing;               //Team's Standing in the table
     vector<FIFA_player> players;//vector of the players on the team
     int team_goals;             //Team's total goals

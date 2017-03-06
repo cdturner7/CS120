@@ -1,10 +1,12 @@
 //
 //  shapes.cpp
-//  CS120
+//  CS 120 B
 //
-//  Created by Collin on 2/27/17.
-//  Copyright © 2017 Collin. All rights reserved.
+//  Created by Lisa Dion on 2/23/17.
+//  Copyright © 2017 Lisa Dion. All rights reserved.
 //
+
+/* Rappin' Rodney by Rodney Dangerfield */
 
 #include "shapes.hpp"
 
@@ -47,8 +49,6 @@ void Shape::setFill(color f) {
 void Shape::setFill(double r, double g, double b) {
     fill = {r, g, b};
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////
 
 Rectangle::Rectangle() : Shape(rectangle), height(0), width(0) {
 }
