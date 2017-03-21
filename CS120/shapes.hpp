@@ -9,6 +9,8 @@
 #ifndef shapes_hpp
 #define shapes_hpp
 
+#include <cmath>
+
 enum shapeName {circle, rectangle, square, triangle, parallelogram, rhombus, trapezoid, quadrilateral, polygon};
 
 struct color {
@@ -73,6 +75,6 @@ private:
     double radius;
 };
 
-
+// cout << "\u25A0";
 
 #endif /* shapes_hpp */

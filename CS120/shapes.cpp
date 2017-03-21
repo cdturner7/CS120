@@ -73,3 +73,21 @@ void Rectangle::calcAreaPeri(double &a, double &p) {
     a = height * width;
     p = 2 * height + 2 * width;
 }
+
+Circle::Circle() : Shape(), radius(0) {
+    calcAreaPeri(area, perimeter);
+}
+
+double Circle::getRadius() const {
+    return radius;
+}
+
+void Circle::setRadius(double r) {
+    radius = r;
+    calcAreaPeri(area, perimeter);
+}
+
+void Circle::calcAreaPeri(double &a, double &p) {
+    a = M_PI * radius * radius;
+    p = 2.0 * M_PI * radius;
+}
