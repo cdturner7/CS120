@@ -54,6 +54,18 @@
  just to make it easier.. so each vector and team object are essentially 
  creating same team differently
  */
+/*
+ 
+ The THIRD part of my program I added in an "is a" class of FIFA_goalie
+ This class holds all of the same methods and fields as its parent 
+ FIFA_player, but since its the goalie it also has a save and goals against 
+ field. The overall field is the same but the calcOverall method for this 
+ field is overrided to calculate the goalies overall rating by their saves 
+ and goals against rather than goals and asssists. Lastly I added two enum 
+ classes one of which is used in the last field of the struct class created 
+ to hold the information of the players cleats.
+ 
+ */
 
 #include <iostream>
 #include "FIFA.hpp"
@@ -160,7 +172,7 @@ int main() {
     
 //////////////////////////////////////////////////////////////////////////////////////////////
     ///TEST 2nd CLASS///
-    
+/*
     cout << "\nTesting the Second class: \n" << endl;
     
     //Test the default constructor
@@ -258,6 +270,100 @@ int main() {
     cout << "\n" << theTeam[4] << endl;                                                 //print player instance after changes
     cout << "\nTeams total goals (up by 30): " << liverpool.getTeamGoals() << endl;     //print team goals after changes
     cout << "Teams total assists (up by 20): " << liverpool.getTeamAssists() << endl;   //print team assits after changes
+*/
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    //Testing from the FIFA_goalie class
+    
+    //Testing all constructors:
+    //default
+    cout << "Constructor Testing" << endl;
+    FIFA_goalie collin = FIFA_goalie();
+    cout << collin << endl;
+    cout << endl;
+    
+    //Create instance of goalies cleats -
+    cleats c = {"Nike", "Tiempo", FG};
+    //name and goals and assists and team name and whether player starts on the field (all fields)
+    FIFA_goalie mignolet = FIFA_goalie("Mignolet", 21, 12, "Liverpool", true, Home, c);
+    cout << mignolet << endl;
+    cout << endl;
+    
+    cout << "**********************" << endl;
+    
+    //test all of the getters
+    cout << "Getters Testing\n" << endl;
+    cout << "getName - " << mignolet.getName() << endl;
+    cout << "getTeam - " << mignolet.getTeam() << endl;
+    cout << "getGoals - " << mignolet.getGoals() << endl; //has a goals count even though they're a goalie
+    cout << "getAssists - " << mignolet.getAssists() << endl;
+    cout << "getStart - " << boolalpha <<  mignolet.getStart() << endl;
+    cout << "getOverall - " << mignolet.getOverall() << endl;
+    cout << "getGoalsAgainst - " << mignolet.getGoalsAgainst() << endl;
+    cout << "ggetSaves - " << mignolet.getSaves() << endl;
+    cout << endl;
+    
+    cout << "**********************" << endl;
+    
+    //test all of the setters
+    FIFA_goalie courtois = FIFA_goalie();
+    cout << "Setters Testing\n" << endl;
+    cout << "setName - Thibault Courtois" << endl;
+    courtois.setName("Thibault Courtois");
+    cout << "setTeam - Chelsea" << endl;
+    courtois.setTeam("Chelsea");
+    cout << "setGoals - 1" << endl;
+    courtois.setGoals(1);
+    cout << "setAssists - 2" << endl;
+    courtois.setAssists(12);
+    cout << "setStart - true" << endl;
+    courtois.setStart(true);
+    cout << "setGoalsAgainst - 15" << endl;
+    courtois.setGoalsAgainst(15);
+    cout << "setSaves - 14" << endl;
+    courtois.setSaves(14);
+    cout << "\nEverything printed...\n" << courtois << endl;
+    
+    //Test incorrect inputs
+    cout << "Test incorrect Inputs. If classes are correct - \nBelow results should all display zeros:" << endl;
+    courtois.setGoals(-5422);
+    cout << courtois.getGoals() << endl;
+    courtois.setGoals(50005);
+    cout << courtois.getGoals() << endl;
+    courtois.setAssists(-293);
+    cout << courtois.getAssists() << endl;
+    courtois.setAssists(4293);
+    cout << courtois.getAssists() << endl;
+    courtois.setSaves(-42);
+    cout << courtois.getSaves() << endl;
+    courtois.setSaves(9912);
+    cout << courtois.getSaves() << endl;
+    courtois.setGoalsAgainst(-52);
+    cout << courtois.getGoalsAgainst() << endl;
+    courtois.setGoalsAgainst(4352);
+    cout << courtois.getGoalsAgainst() << endl;
+    cout << endl;
+    
+    cout << "********************************" << endl;
+    //test the operator to compare overall rating of two FIFAplayers
+    cout << "Compare overall rating of Courtois vs Mignolet\n" << endl;
+    FIFA_goalie mign = FIFA_goalie("Simon Mignolet", 24, 13, "Liverpool", true, Alternative, c);
+    FIFA_goalie court = FIFA_goalie("Thibault Courtois", 19, 16, "Chelsea", true, Away, c);
+    
+    cout << "Mignolet Overall :  " << mign.getOverall() << endl;
+    cout << "Courtois Overall :  " << court.getOverall() << endl;
+    
+    if(mign > court)
+    {
+        cout << "\nMignolet is better than Courtois" << endl;
+    }
+    else
+    {
+        cout << "\nCourtois is better than Mignolet, but that's just not possible..." << endl;
+    }
+
+    
+    
 
     //Done with testing
     cout << "\n\nEnd of Testing ... " << endl;

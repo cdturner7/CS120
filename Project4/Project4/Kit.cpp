@@ -6,7 +6,7 @@
 //  Copyright © 2017 Collin. All rights reserved.
 //
 
-#include "FIFA.hpp"
+#include "Kit.hpp"
 #include <iostream>
 #include <sstream>
 
@@ -82,32 +82,24 @@ string FIFA_player::getName() const
 {
     return name;
 }
+/*//set the goalies kit
+kit FIFA_player::getKit() const
+{
+    return kit;
+}
 //set the goalies kit
- kit FIFA_player::getKit() const
- {
- return kit;
- }
- //set the goalies kit
- cleats FIFA_player::getCleats() const
- {
- return cleats;
- }
-
+cleats FIFA_player::getCleats() const
+{
+    return cleats;
+}
+*/
 //////////////Setters///////////////////
 
 //set the players goals stat
 //and calculate the calcOverall
 void FIFA_player::setGoals(int in_g)
 {
-    if(in_g < 0 || in_g > 1000)
-    {
-        goals = 0;
-    }
-    else
-    {
-        goals = in_g;
-    }
-
+    goals = in_g;
     overall = calcOverall();
 }
 
@@ -115,15 +107,7 @@ void FIFA_player::setGoals(int in_g)
 //and calculate the calcOverall
 void FIFA_player::setAssists(int in_a)
 {
-    if (in_a < 0 || in_a > 1000)
-    {
-        assists = 0;
-    }
-    else
-    {
-        assists = in_a;
-    }
-    
+    assists = in_a;
     overall = calcOverall();
 }
 
@@ -146,16 +130,16 @@ void FIFA_player::setName(string in_n)
 {
     name = in_n;
 }
-//set the players kit
- void FIFA_player::setKit(enum kit in_k)
- {
- kit = in_k;
- }
- //set the players cleats
- void FIFA_player::setCleats(struct cleats in_c)
- {
- cleats = in_c;
- }
+/*//set the players kit
+void FIFA_player::setKit(enum kit in_k)
+{
+    kit = in_k;
+}
+//set the players cleats
+void FIFA_player::setCleats(struct cleats in_c)
+{
+    cleats = in_c;
+}*/
 
 //////////////////////Other Methods/////////////////////
 
@@ -169,8 +153,8 @@ ostream& operator << (ostream& output, const FIFA_player &fifa_player)
     << "\nGoals Scored: " << fifa_player.goals
     << "\nAssists: " << fifa_player.assists
     << "\nOverall FIFA Rating: " << fifa_player.overall
-    << "\nKit: " << fifa_player.kit
-    << "\nCleats: " << &fifa_player.cleats;
+    << "\nKit: " << fifa_player.kit;
+    // << "\nCleats: " << &fifa_player.cleats;
     return output;
 }
 
@@ -304,14 +288,7 @@ int FIFA_goalie::getSaves() const
 //and calculate the calcOverall
 void FIFA_goalie::setGoalsAgainst(int in_ga)
 {
-    if(in_ga < 0 || in_ga > 1000)
-    {
-        goals_against = 0;
-    }
-    else
-    {
-        goals_against = in_ga;
-    }
+    goals_against = in_ga;
     overall = calcOverall();
 }
 
@@ -319,33 +296,26 @@ void FIFA_goalie::setGoalsAgainst(int in_ga)
 //and calculate the calcOverall
 void FIFA_goalie::setSaves(int in_s)
 {
-    if(in_s < 0 || in_s > 1000)
-    {
-        saves = 0;
-    }
-    else
-    {
-        saves = in_s;
-    }
+    saves = in_s;
     overall = calcOverall();
 }
 
 //////////////////////Other Methods/////////////////////
 
-//binary operator overloads, prints object instance fields.
- ostream& operator << (ostream& output, const FIFA_goalie &fifa_goalie)
- {
- //Print everything
- output << "Player's Name: " << fifa_goalie.name
- << "\nTeam: " << fifa_goalie.team
- << "\nDoes Player Start? " << boolalpha << fifa_goalie.starter
- << "\nGoals Scored Against: " << fifa_goalie.goals_against
- << "\nSaves: " << fifa_goalie.saves
- << "\nOverall FIFA Rating: " << fifa_goalie.overall
- << "\nKit: " << fifa_goalie.kit
- << "\nCleats: " << fifa_goalie.cleats.brand << " " << fifa_goalie.cleats.model << " " << fifa_goalie.cleats.type << endl;
- return output;
- }
+/*//binary operator overloads, prints object instance fields.
+ostream& operator << (ostream& output, const FIFA_goalie &fifa_goalie)
+{
+    //Print everything
+    output << "Player's Name: " << fifa_goalie.name
+    << "\nTeam: " << fifa_goalie.team
+    << "\nDoes Player Start? " << boolalpha << fifa_goalie.starter
+    << "\nGoals Scored Against: " << fifa_goalie.goals_against
+    << "\nSaves: " << fifa_goalie.saves
+    << "\nOverall FIFA Rating: " << fifa_goalie.overall
+    << "\nKit: " << fifa_goalie.kit
+    << "\nCleats: " << &fifa_goalie.cleats;
+    return output;
+}*/
 
 //calculate the overall rating of player
 int FIFA_goalie::calcOverall() const

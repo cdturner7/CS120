@@ -6,8 +6,8 @@
 //  Copyright © 2017 Collin. All rights reserved.
 //
 
-#ifndef FIFA_hpp
-#define FIFA_hpp
+#ifndef Kit_hpp
+#define Kit_hpp
 
 #include <stdio.h>
 #include <string>
@@ -52,8 +52,8 @@ public:
     virtual bool getStart() const;
     virtual string getTeam() const;
     virtual string getName() const;
-    virtual enum kit getKit() const;
-    virtual struct cleats getCleats() const;
+    //virtual enum kit getKit() const;
+    //virtual struct cleats getCleats() const;
     
     //Setters
     virtual void setGoals(int in_g);
@@ -61,8 +61,8 @@ public:
     virtual void setStart(bool in_s);
     virtual void setTeam(string in_t);
     virtual void setName(string in_n);
-    virtual void setKit(kit in_k);
-    virtual void setCleats(cleats in_c);
+    //virtual void setKit(kit in_k);
+    //virtual void setCleats(cleats in_c);
     
     // binary operator overloads
     friend ostream& operator << (ostream& output, const FIFA_player &fifa_player);
@@ -70,7 +70,7 @@ public:
     friend bool operator > (const FIFA_player &lhs, const FIFA_player &rhs);
     
 protected:
-    
+
     
     
     //Fields
@@ -82,7 +82,7 @@ protected:
     string name;    //the player's name
     kit kit;        //kit or jersey of the players
     cleats cleats;   //The cleats the player is wearing
-    
+
 private:
     /**
      * Requires: nothing
@@ -107,33 +107,33 @@ public:
     
     /**
      * Requires: nothing or input from user for setting field
-     * Modifies: goals_against, saves, and overrides to calc
+     * Modifies: goals_against, saves, and overrides to calc 
      *           overall
-     * Effects:  gets or sets values for goals_against, saves,
+     * Effects:  gets or sets values for goals_against, saves, 
      *           and overall
      */
     //Getters
     virtual int getGoalsAgainst() const;
     virtual int getSaves() const;
-    
+
     //Setters
     virtual void setGoalsAgainst(int in_ga);
     virtual void setSaves(int in_s);
     
     // binary operator overloads
-    friend ostream& operator << (ostream& output, const FIFA_goalie &fifa_goalie);
+    //friend ostream& operator << (ostream& output, const FIFA_goalie &fifa_goalie);
     
 private:
     
     /**
      * Requires: nothing
      * Modifies: nothing
-     * Effects:  calculates the overall rating for
+     * Effects:  calculates the overall rating for 
      *           goalie from stats the goalie has
      */
     virtual int calcOverall() const override;
-    
-protected:
+
+protected: 
     //Fields
     int saves;          //Goalies number of saves
     int goals_against;  //Goalies number of saves
@@ -146,7 +146,7 @@ protected:
 //Class for a team of FIFA players -> FIFA_Team
 class FIFA_team
 {
-    
+
 public:
     
     //Constructors
@@ -207,7 +207,7 @@ private:
 };
 
 
-#endif /* FIFA_hpp */
+#endif /* Kit_hpp */
 
 
 
