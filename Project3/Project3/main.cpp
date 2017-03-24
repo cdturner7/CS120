@@ -1,6 +1,6 @@
 //
 //  main.cpp
-//  Project3
+//  Project5
 //
 //  Created by Collin on 2/22/17.
 //  Copyright © 2017 Collin. All rights reserved.
@@ -9,61 +9,22 @@
  
  MY PROGRAM -
  
- This is a program to test the FIFA class. The class is designed
- to hold information about a FIFA soccer player and then it
- calculates the overall value of the player on a scale of 100.
- It calculates this based on the goals, assists, and whether the
- player starts or is a sub.
+ The fourth part of my on going FIFA project transforms the 
+ FIFA_player class into an abstract class, and four derived
+ child classes FIFA_goalie, FIFA_midfielder, FIFA_defenseman 
+ and FIFA_striker. These classes override and inherit specific 
+ functions and fields defined in the parent class.
  
- Overloaded operaors were implemented to compare players
- overall ratings.
+ The pure virtual method in the parent class FIFA_player is 
+ calcOverall. This is a method that based upon the position
+ or class the FIFA-player is in, the overall field is calculated
+ differently. Example would be a striker's overall stat is affected
+ by their shot accuracy percentage, goals and assists. But a goalie
+ has overall calculated base upon goals conceded and saves.
  
- * These are also all stats in a given year. So typically a
- player doesnt score more than 20 goals or assists in a season
- but the stats are made to support this.
- No player can actually hit a perfect score because no player
- is perfect on the pitch. So the min is 65 and the max score
- is set at 95, even though its on a scale of 0-100.
- 
- Setters will only allow the expected input to be submitted as
- parameter, but as for the setAssists and setGoals you can pass
- a double but it will be truncated. If you submit anything
- negative then the player doesnt recieve any positive points
- for goals or assists in their overall rating. (tested below)
- 
- */
-/*
- 
- The Second part of this program is the testing of the second class
- for Project #3. I created a FIFA_team, which has FIFA_players. It 
- has players on the team and are passed to the constructor or just 
- constructed using a vector of FIFA_players.
- 
- There are many getters and setters with an add and delete function 
- to the team roster. Theres an overloading operator to display
- all the team stats and players. A function to get the team returned
- into a vecotr that has just the players names in it - the roster
- There are also fields that are in the FIFA_team class that are initiated
- by calculating the sum of fields in the instances in the vector - the 
- total teams goals and the total team assists.
- 
- There should be sufficient testing to show that all of the methods 
- and classes work and function as they are suppose to.
- 
- testing names livpl,livpool,liverpool - all referencing same team 
- just to make it easier.. so each vector and team object are essentially 
- creating same team differently
- */
-/*
- 
- The THIRD part of my program I added in an "is a" class of FIFA_goalie
- This class holds all of the same methods and fields as its parent 
- FIFA_player, but since its the goalie it also has a save and goals against 
- field. The overall field is the same but the calcOverall method for this 
- field is overrided to calculate the goalies overall rating by their saves 
- and goals against rather than goals and asssists. Lastly I added two enum 
- classes one of which is used in the last field of the struct class created 
- to hold the information of the players cleats.
+ NOTE: goals are represented by total of the season. Similarly 
+ assists are season long totals. However most if not all of the
+ other individual child classes fields are per game (pg) statistics.
  
  */
 
@@ -72,299 +33,109 @@
 
 using namespace std;
 
-int main() {
-    /*
-     
-     //Testing from the first class
-     
-    //Testing all constructors:
-    //default
-    cout << "Constructor Testing" << endl;
-    FIFA_player collin = FIFA_player();
-    cout << collin << endl;
-    cout << endl;
-    //just name
-    FIFA_player ct1 = FIFA_player("Collin Turner");
-    cout << ct1 << endl;
-    cout << endl;
-    //name and goals
-    FIFA_player ct2 = FIFA_player("Collin Turner", 12);
-    cout << ct2 << endl;
-    cout << endl;
-    //name and goals and assists
-    FIFA_player ct3 = FIFA_player("Collin Turner", 12, 8);
-    cout << ct3 << endl;
-    cout << endl;
-    //name and goals and assists and team name
-    FIFA_player ct4 = FIFA_player("Collin Turner", 12, 8, "Liverpool FC");
-    cout << ct4 << endl;
-    cout << endl;
-    //name and goals and assists and team name and whether player starts on the field (all fields)
-    FIFA_player ct5 = FIFA_player("Collin Turner", 12, 8, "Liverpool FC", false);
-    cout << ct5 << endl;
-    cout << endl;
-    
-    cout << "**********************" << endl;
-    
-    //test all of the getters
-    cout << "Getters Testing\n" << endl;
-    cout << "getName - " << ct5.getName() << endl;
-    cout << "getTeam - " << ct5.getTeam() << endl;
-    cout << "getGoals - " << ct5.getGoals() << endl;
-    cout << "getAssists - " << ct5.getAssists() << endl;
-    string st;
-    if(ct5.getStart() == 1)
-    {
-        string st = "Yes";
-    }
-    else
-    {
-        st = "No";
-    }
-    cout << "getStart - " << st << endl;
-    cout << "getOverall - " << ct5.getOverall() << endl;
-    cout << endl;
-    
-    cout << "**********************" << endl;
-    
-    //test all of the setters
-    cout << "Setters Testing\n" << endl;
-    cout << "setName - Lionel Messi" << endl;
-    ct5.setName("Lionel Messi");
-    cout << "setTeam - Barcelona FC" << endl;
-    ct5.setTeam("Barcelona FC");
-    cout << "setGoals - 24" << endl;
-    ct5.setGoals(24);
-    cout << "setAssists - 16" << endl;
-    ct5.setAssists(16);
-    cout << "setStart - true" << endl;
-    ct5.setStart(true);
-    cout << "\n" << ct5 << endl;
-    
-    //Test incorrect inputs
-    ct5.setGoals(-5422);
-    cout << "\n" << ct5 << endl;
-    ct5.setAssists(-293);
-    cout << "\n" << ct5 << endl;
-    ct5.setGoals(5.5);
-    cout << "\n" << ct5 << endl;
-    cout << endl;
-    
-    cout << "********************************" << endl;
-    
-    //test the operator to compare overall rating of two FIFAplayers
-    cout << "Compare overall rating of Ronaldo vs Messi\n" << endl;
-    FIFA_player ronaldo = FIFA_player("Christiano Ronaldo", 19, 25, "Real Madrid", true);
-    FIFA_player messi = FIFA_player("Lionel Messi", 21, 16, "Barcelona FC", true);
-    
-    cout << "Messi Overall   : " << messi.getOverall() << endl;
-    cout << "Ronaldo Overall : " << ronaldo.getOverall() << endl;
-    
-    if(messi > ronaldo)
-    {
-        cout << "\nMessi is better than Ronaldo" << endl;
-    }
-    else
-    {
-        cout << "\nRonaldo is better than Messi, but that's just not possible..." << endl;
-    }
-    */
-    
-//////////////////////////////////////////////////////////////////////////////////////////////
-    ///TEST 2nd CLASS///
 /*
-    cout << "\nTesting the Second class: \n" << endl;
+
+ MAIN - for testing for the abstract class and the child classes
+ 
+ */
+
+int main()
+{
+    ////////////////////////
+    // Striker Class Test //
+    ////////////////////////
+    cout << "Start to testing the FIFA_striker child class:\n\n" << endl;
     
-    //Test the default constructor
-    FIFA_team chelsea = FIFA_team();
-    cout << chelsea << endl;
-   
-    //Create vector of players to pass to other class - to create a team
-    FIFA_player sturridge = FIFA_player("Daniel Sturridge", 7, 5, "Liverpool FC", false);
-    FIFA_player mane = FIFA_player("Sadio Mané", 20, 13, "Liverpool FC", true);
-    FIFA_player firmino = FIFA_player("Roberto Firmino", 12, 8, "Liverpool FC", true);
-    FIFA_player coutinho = FIFA_player("Philippe Coutinho", 15, 10, "Liverpool FC", true);
-    FIFA_player lallana = FIFA_player("Adam Lallana", 19, 16, "Liverpool FC", true);
-    vector<FIFA_player> livpl = {sturridge, mane, firmino, coutinho, lallana};
+    //Create a striker fifa player
+    FIFA_striker sturridge = FIFA_striker();
+    cout << sturridge << "\n" << endl;
     
-    //test the vector of players constructor
-    FIFA_team livpool = FIFA_team(livpl);
-    cout << livpool << endl;
+    //test all the setters
+    sturridge.setName("Daniel Sturridge");  //set name
+    sturridge.setTeam("Liverpool FC");      //set teams name
+    sturridge.setGoals(15);                 //set season long goals
+    sturridge.setAssists(18);               //set season long assists
+    sturridge.setStart(true);               //set starting on the field
+    sturridge.setShots(6);                  //set shots - average per game stat
+    sturridge.setShotsOnGoal(4);            //set how many of the shots on target
     
-    //test the constructor that takes in all params
-    FIFA_team liverpool = FIFA_team(livpl, 14, 7, 4, 5, "Liverpool");
-    cout << liverpool << endl;
-    
-    //test the add player function and create player to add
-    FIFA_player gerrard = FIFA_player("Steven Gerrard", 0, 0, "Liverpool FC", false);
-    liverpool.addPlayer(gerrard);
-    cout << endl;
-    cout << liverpool << endl; //shows the name was added
-    
-    //test the delete player function
-    liverpool.deletePlayer("Firmino");          //doesnt find name - error message
-    liverpool.deletePlayer("Roberto Firmino");  //finds and deletes name
-    cout << endl;
-    cout << liverpool << endl; //shows the name was deleted
-    
-    //test to get just the players names
-    vector<string> justNames = liverpool.getPlayerNames();
-    for(int i=0 ; i < justNames.size(); i++)
+    //test all the getters
+    cout << sturridge.getName() << endl;
+    cout << sturridge.getTeam() << endl;
+    cout << sturridge.getGoals() << endl;
+    cout << sturridge.getAssists() << endl;
+    if(sturridge.getStart())
     {
-        cout << justNames[i] << endl;
+        cout << "yes" << endl;
     }
-    
-    //Test all of the setters and getters!
-    liverpool.setTeamName("Liverpool FC Rules");
-    liverpool.setWins(20);
-    liverpool.setLosses(1);
-    liverpool.setDraws(3);
-    liverpool.setStandings(1);
-    
-    cout << "\nTeam: " << liverpool.getTeamName() << endl;
-    cout << "Wins: " << liverpool.getWins() << endl;
-    cout << "Losses: " << liverpool.getLosses() << endl;
-    cout << "Draws: " << liverpool.getDraws() << endl;
-    cout << "Standings: " << liverpool.getStanding() << endl;
-    cout << "Total Goals: " << liverpool.getTeamGoals() << endl;
-    cout << "Total Assists: " << liverpool.getTeamAssists() << endl;
-    cout << "\n" << liverpool << endl;  //See if it all worked with overloaded operator
-    
-    //test the getTeam method - list all the player instances
-    vector<FIFA_player> theTeam = liverpool.getTeam();
-    for(int i = 0; i < theTeam.size(); i++)
-    {
-        cout << "\n" << theTeam[i] << endl;
+    else{
+        cout << "nope" << endl;
     }
+    cout << sturridge.getShots() << endl;
+    cout << sturridge.getShotsOnGoal() << endl;
+    cout << sturridge.getShotPercentage() << endl;
+    cout << sturridge.getOverall() << endl;
     
-    //The goals, losses, and draws dont take anything unrealistic - (negatives/over 1000)
-    //NEGATIVES
-    liverpool.setWins(-20);
-    liverpool.setLosses(-1);
-    liverpool.setDraws(-3);
-    liverpool.setStandings(-1);
-    cout << "Negatives - \nWins: " << liverpool.getWins() << endl;
-    cout << "Losses: " << liverpool.getLosses() << endl;
-    cout << "Draws: " << liverpool.getDraws() << endl;
-    cout << "Standings: " << liverpool.getStanding() << endl;
-    liverpool.setWins(2000);
-    liverpool.setLosses(1000);
-    liverpool.setDraws(3000);
-    liverpool.setStandings(1000);
-    cout << "\nOver 1000 - \nWins: " << liverpool.getWins() << endl;
-    cout << "Losses: " << liverpool.getLosses() << endl;
-    cout << "Draws: " << liverpool.getDraws() << endl;
-    cout << "Standings: " << liverpool.getStanding() << endl;
+    //Test the input validation for the striker class
+    sturridge.setShots(-3);
+    cout << "\nNegative shots results in striker shots to be = " << sturridge.getShots() << endl;
+    sturridge.setShots(3);
+    cout << "Less shots taken than shots on net results in twice the shots on net = " << sturridge.getShots() << endl;
+    sturridge.setShotsOnGoal(-5);
+    cout << "Negative shots on goal results in  = " << sturridge.getShotsOnGoal() << endl;
+    sturridge.setShotsOnGoal(16);
+    cout << "More shots on net than shots taken results in  = " << sturridge.getShotsOnGoal() << "\n"<< endl;
+
+    cout << "******************************************************************************" << endl;
     
-    //Change one of the team members goals and assists....
-    cout << "\n" << theTeam[4] << endl;                                     //print player instance before changes
-    cout << "\nTeams total goals: " << liverpool.getTeamGoals() << endl;      //print team goals before changes
-    cout << "Teams total assists: " << liverpool.getTeamAssists() << "\n" << endl;  //print team assists before changes
+    ///////////////////////////
+    // Midfielder Class Test //
+    ///////////////////////////
+    cout << "Start to testing the FIFA_midfielder child class:\n\n" << endl;
     
-    liverpool.setPlayerGoals(theTeam, "Gerrard", 30);           //doesnt find player
-    liverpool.setPlayerGoals(theTeam, "Steven Gerrard", 30);    //finds player changes goals
-    liverpool.setPlayerAssists(theTeam, "Gerrard", 20);         //doesnt find player
-    liverpool.setPlayerAssists(theTeam, "Steven Gerrard", 20);  //finds player and changes assists
+    //create a midfielder fifa player
+    //FIFA_midfielder coutinho = FIFA_midfielder();
+    //cout << coutinho << "\n" << endl;
     
-    //With changes:
-    cout << "\n" << theTeam[4] << endl;                                                 //print player instance after changes
-    cout << "\nTeams total goals (up by 30): " << liverpool.getTeamGoals() << endl;     //print team goals after changes
-    cout << "Teams total assists (up by 20): " << liverpool.getTeamAssists() << endl;   //print team assits after changes
-*/
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    //Testing from the FIFA_goalie class
+    ///////////////////////////
+    // Defenseman Class Test //
+    ///////////////////////////
+    cout << "Start to testing the FIFA_defenseman child class:\n\n" << endl;
     
-    //Testing all constructors:
-    //default
-    cout << "Constructor Testing" << endl;
-    FIFA_goalie collin = FIFA_goalie();
-    cout << collin << endl;
-    cout << endl;
+    //create a defenseman fifa player
     
-    //Create instance of goalies cleats -
-    cleats c = {"Nike", "Tiempo", FG};
-    //name and goals and assists and team name and whether player starts on the field (all fields)
-    FIFA_goalie mignolet = FIFA_goalie("Mignolet", 21, 12, "Liverpool", true, Home, c);
-    cout << mignolet << endl;
-    cout << endl;
     
-    cout << "**********************" << endl;
     
-    //test all of the getters
-    cout << "Getters Testing\n" << endl;
-    cout << "getName - " << mignolet.getName() << endl;
-    cout << "getTeam - " << mignolet.getTeam() << endl;
-    cout << "getGoals - " << mignolet.getGoals() << endl; //has a goals count even though they're a goalie
-    cout << "getAssists - " << mignolet.getAssists() << endl;
-    cout << "getStart - " << boolalpha <<  mignolet.getStart() << endl;
-    cout << "getOverall - " << mignolet.getOverall() << endl;
-    cout << "getGoalsAgainst - " << mignolet.getGoalsAgainst() << endl;
-    cout << "ggetSaves - " << mignolet.getSaves() << endl;
-    cout << endl;
+    ///////////////////////
+    // Goalie Class Test //
+    ///////////////////////
+    cout << "Start to testing the FIFA_goalie child class:\n\n" << endl;
     
-    cout << "**********************" << endl;
+    //create a goalie fifa player
+    FIFA_goalie mignolet = FIFA_goalie();
+    cout << mignolet << "\n" << endl;
     
-    //test all of the setters
-    FIFA_goalie courtois = FIFA_goalie();
-    cout << "Setters Testing\n" << endl;
-    cout << "setName - Thibault Courtois" << endl;
-    courtois.setName("Thibault Courtois");
-    cout << "setTeam - Chelsea" << endl;
-    courtois.setTeam("Chelsea");
-    cout << "setGoals - 1" << endl;
-    courtois.setGoals(1);
-    cout << "setAssists - 2" << endl;
-    courtois.setAssists(12);
-    cout << "setStart - true" << endl;
-    courtois.setStart(true);
-    cout << "setGoalsAgainst - 15" << endl;
-    courtois.setGoalsAgainst(15);
-    cout << "setSaves - 14" << endl;
-    courtois.setSaves(14);
-    cout << "\nEverything printed...\n" << courtois << endl;
     
-    //Test incorrect inputs
-    cout << "Test incorrect Inputs. If classes are correct - \nBelow results should all display zeros:" << endl;
-    courtois.setGoals(-5422);
-    cout << courtois.getGoals() << endl;
-    courtois.setGoals(50005);
-    cout << courtois.getGoals() << endl;
-    courtois.setAssists(-293);
-    cout << courtois.getAssists() << endl;
-    courtois.setAssists(4293);
-    cout << courtois.getAssists() << endl;
-    courtois.setSaves(-42);
-    cout << courtois.getSaves() << endl;
-    courtois.setSaves(9912);
-    cout << courtois.getSaves() << endl;
-    courtois.setGoalsAgainst(-52);
-    cout << courtois.getGoalsAgainst() << endl;
-    courtois.setGoalsAgainst(4352);
-    cout << courtois.getGoalsAgainst() << endl;
-    cout << endl;
     
-    cout << "********************************" << endl;
-    //test the operator to compare overall rating of two FIFAplayers
-    cout << "Compare overall rating of Courtois vs Mignolet\n" << endl;
-    FIFA_goalie mign = FIFA_goalie("Simon Mignolet", 24, 13, "Liverpool", true, Alternative, c);
-    FIFA_goalie court = FIFA_goalie("Thibault Courtois", 19, 16, "Chelsea", true, Away, c);
     
-    cout << "Mignolet Overall :  " << mign.getOverall() << endl;
-    cout << "Courtois Overall :  " << court.getOverall() << endl;
     
-    if(mign > court)
-    {
-        cout << "\nMignolet is better than Courtois" << endl;
-    }
-    else
-    {
-        cout << "\nCourtois is better than Mignolet, but that's just not possible..." << endl;
-    }
+    
+    
+    
+    //put all the FIFA_players in a vector for pointer reference
+    
+    
+    
+    //Test the children by making a few players and
+    //a goalie and iterating through the vector with
+    //a pointer to the parent class calling a method
+    
+    
 
     
     
-
+    
     //Done with testing
     cout << "\n\nEnd of Testing ... " << endl;
     
