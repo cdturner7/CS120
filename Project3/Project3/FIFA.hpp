@@ -14,7 +14,7 @@
 #include <vector>
 using namespace std;
 
-enum position {Goalie, Striker, Midfielder, Defenseman};
+enum position {Goalie = 0, Striker, Midfielder, Defenseman};
 
 ///////////////////////////////
 // PLAYER Class construction //
@@ -75,58 +75,6 @@ private:
      * Effects:  calculates the overall rating for player
      */
     virtual int calcOverall() const = 0;    //Pure Virtual Function makes abstract class
-};
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-///////////////////////////////
-// GOALIE Class construction //
-///////////////////////////////
-
-//Create a team class to hold the parent class
-class FIFA_goalie : public FIFA_player
-{
-    
-public:
-   
-    //constructors
-    FIFA_goalie();
-    //All params
-    FIFA_goalie(string n, int g, int a, string t, bool s, int ga, int sv);
-    
-    /**
-     * Requires: nothing or input from user for setting field
-     * Modifies: goals_against, saves, and overrides to calc
-     *           overall
-     * Effects:  gets or sets values for goals_against, saves,
-     *           and overall
-     */
-    //Getters
-    int getGoalsAgainst() const;
-    int getSaves() const;
-    
-    //Setters
-    void setGoalsAgainst(int in_ga);
-    void setSaves(int in_s);
-    
-    //binary operator overloads
-    friend ostream& operator << (ostream& output, const FIFA_goalie &fifa_goalie);
-    
-protected:
-    
-    //Fields
-    int saves;          //Goalies number of saves
-    int goals_against;  //Goalies number of saves
-
-private:
-    
-    /**
-     * Requires: nothing
-     * Modifies: nothing
-     * Effects:  calculates the overall rating for
-     *           goalie from stats the goalie has
-     */
-    virtual int calcOverall() const override;
 };
 
 
@@ -245,6 +193,7 @@ private:
     virtual int calcOverall() const override;
 };
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////
@@ -260,7 +209,7 @@ public:
     //constructors
     FIFA_defenseman();
     //All params
-    FIFA_defenseman(string n, int g, int a, string t, bool s);
+    FIFA_defenseman(string n, int g, int a, string t, bool s, int tk, int i);
     
     /**
      * Requires: nothing or input from user for setting field
@@ -270,21 +219,21 @@ public:
      *           and overall
      */
     //Getters
-    virtual int getGoalsAgainst() const;
-    virtual int getSaves() const;
+    virtual int getTackles() const;
+    virtual int getInterceptions() const;
     
     //Setters
-    virtual void setGoalsAgainst(int in_ga);
-    virtual void setSaves(int in_s);
+    virtual void setTackles(int in_tk);
+    virtual void setInterceptions(int in_i);
     
     //binary operator overloads
-    //friend ostream& operator << (ostream& output, const FIFA_goalie &fifa_goalie);
+    friend ostream& operator << (ostream& output, const FIFA_defenseman &fifa_defenseman);
     
 protected:
     
     //Fields
-    int saves;          //Goalies number of saves
-    int goals_against;  //Goalies number of saves
+    int tackles;        //average tackles pg
+    int interceptions;  //average interceptions pg
 
 private:
     
@@ -296,6 +245,60 @@ private:
      */
     virtual int calcOverall() const override;
 };
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////
+// GOALIE Class construction //
+///////////////////////////////
+
+//Create a team class to hold the parent class
+class FIFA_goalie : public FIFA_player
+{
+    
+public:
+    
+    //constructors
+    FIFA_goalie();
+    //All params
+    FIFA_goalie(string n, int g, int a, string t, bool s, int ga, int sv);
+    
+    /**
+     * Requires: nothing or input from user for setting field
+     * Modifies: goals_against, saves, and overrides to calc
+     *           overall
+     * Effects:  gets or sets values for goals_against, saves,
+     *           and overall
+     */
+    //Getters
+    int getGoalsAgainst() const;
+    int getSaves() const;
+    
+    //Setters
+    void setGoalsAgainst(int in_ga);
+    void setSaves(int in_s);
+    
+    //binary operator overloads
+    friend ostream& operator << (ostream& output, const FIFA_goalie &fifa_goalie);
+    
+protected:
+    
+    //Fields
+    int saves;          //Goalies number of saves
+    int goals_against;  //Goalies number of saves
+    
+private:
+    
+    /**
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects:  calculates the overall rating for
+     *           goalie from stats the goalie has
+     */
+    virtual int calcOverall() const override;
+};
+
 
 
 #endif /* FIFA_hpp */
