@@ -378,6 +378,11 @@ float FIFA_striker::calcShotPercent() const
     return (float(getShotsOnGoal())/float(getShots()))*100;
 }
 
+//overridden from parent and prints position
+void FIFA_striker::printPosition() const
+{
+    cout << "Player's position: Striker" << endl;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -620,6 +625,12 @@ int FIFA_midfielder::calcOverall() const
     return rating;
 }
 
+//overridden from parent and prints position
+void FIFA_midfielder::printPosition() const
+{
+    cout << "Player's position: Midfielder" << endl;
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////
@@ -857,6 +868,11 @@ int FIFA_defenseman::calcOverall() const
     return rating;
 }
 
+//overridden from parent and prints position
+void FIFA_defenseman::printPosition() const
+{
+    cout << "Player's position: Defense" << endl;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1028,6 +1044,10 @@ int FIFA_goalie::calcOverall() const
     return rating;
 }
 
-
+//overridden from parent and prints position
+void FIFA_goalie::printPosition() const
+{
+    cout << "Player's position: Goalie" << endl;
+}
 
 

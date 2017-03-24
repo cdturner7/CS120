@@ -75,7 +75,8 @@ private:
      * Effects:  calculates the overall rating for player
      */
     virtual int calcOverall() const = 0;    //Pure Virtual Function makes abstract class
-};
+    virtual void printPosition() const = 0; //pure virtual to print the position of the player(enum position)
+};                                          //this will esentially print the class that player child is in.
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -137,6 +138,10 @@ private:
      * Effects:  Calculates the player's shot percentage
      */
     float calcShotPercent() const;
+    
+    
+    virtual void printPosition() const override; //overridden from parent - prints position is striker
+
 };
 
 
@@ -191,6 +196,8 @@ private:
      *           goalie from stats the goalie has
      */
     virtual int calcOverall() const override;
+    
+    virtual void printPosition() const override; //overridden from parent - prints position is midfielder
 };
 
 
@@ -244,6 +251,8 @@ private:
      *           goalie from stats the goalie has
      */
     virtual int calcOverall() const override;
+    
+    virtual void printPosition() const override; //overridden from parent - prints position is defenseman
 };
 
 
@@ -297,6 +306,8 @@ private:
      *           goalie from stats the goalie has
      */
     virtual int calcOverall() const override;
+    
+    virtual void printPosition() const override; //overridden from parent - prints position is goalie
 };
 
 

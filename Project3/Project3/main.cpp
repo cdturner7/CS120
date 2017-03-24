@@ -246,19 +246,35 @@ int main()
     
     cout << "******************************************************************************" << endl;
 
+    /////////////////////////////
+    // Pointers to Parent Test //
+    /////////////////////////////
+    cout << "Start to testing vector of pointers to parent class:\n" << endl;
     
-    //put all the FIFA_players in a vector
+    //put all the FIFA_players in a vector - unique ptrs
+    cout << "... Creating a unique_ptr vector to hold the child class pointers" << endl;
+    vector<unique_ptr<FIFA_player>> team;
     
+    //add all the pointers to the vector
+    cout << "... Adding child pointers to vector" << endl;
+    team.push_back(unique_ptr<FIFA_striker>(&sturridge));
+    team.push_back(unique_ptr<FIFA_midfielder>(&coutinho));
+    team.push_back(unique_ptr<FIFA_defenseman>(&milner));
+    team.push_back(unique_ptr<FIFA_goalie>(&mignolet));
     
-    
-    //Test the children by making a few players and
-    //a goalie and iterating through the vector with
-    //a pointer to the parent class calling a method
-    
-    
+    //loop and print result
+    cout << "... Looping in vector calling parent function\n" << endl;
+    /**
+     get the overall rating of each of the players by looping through a child call to the abstract class
+     Its calling a get method, the field is calculated for each object in the child class,
+     but calling the abstract's getmethod for the field.
+    */
+    for (int i = 0; i < team.size(); ++i)
+    {
+        cout << team[i]->getName() << "'s overall rating: " << team[i]->getOverall() << endl;
+        team[i].release();
+    }
 
-    
-    
     
     //Done with testing
     cout << "\n\nEnd of Testing ... " << endl;
